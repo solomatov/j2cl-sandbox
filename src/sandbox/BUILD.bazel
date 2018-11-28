@@ -1,4 +1,4 @@
-load("@j2cl//build_defs:rules.bzl", "j2cl_library", "j2cl_application")
+load("@com_google_j2cl//build_defs:rules.bzl", "j2cl_library", "j2cl_application")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
 
 j2cl_library(
@@ -12,7 +12,8 @@ j2cl_library(
     srcs = ["Main.java"],
     deps = [
         ":lib",
-        "@j2cl//:jsinterop-annotations-j2cl"
+        "@com_google_elemental2//java/elemental2/core",
+        "@com_google_j2cl//:jsinterop-annotations-j2cl"
     ]
 )
 
