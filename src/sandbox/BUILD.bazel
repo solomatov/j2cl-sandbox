@@ -1,0 +1,29 @@
+load("@j2cl//build_defs:rules.bzl", "j2cl_library", "j2cl_application")
+load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
+
+j2cl_library(
+    name = "lib",
+    srcs = ["Library.java"],
+    deps = []
+)
+
+j2cl_library(
+    name = "main",
+    srcs = ["Main.java"],
+    deps = [
+        ":lib",
+        "@j2cl//:jsinterop-annotations-j2cl"
+    ]
+)
+
+closure_js_library(
+    name = "entry",
+    srcs = ["entry.js"],
+    deps = [":main"]
+)
+
+j2cl_application(
+    name = "app",
+    entry_points = ["sandbox.entry"],
+    deps = [":entry"]
+)
